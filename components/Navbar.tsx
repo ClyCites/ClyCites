@@ -1,4 +1,7 @@
 // import { NAV_LINKS } from "@/constants";
+"use client";
+
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -57,9 +60,34 @@ export const NAV_LINKS = [
 ];
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 8) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    
-    <nav className="flexBetween max-container padding-container fixed top-8 left-0 w-full z-20 py-1` bg-white border-b-2 border-white shadow-lg">
+    <div>
+    <div className="top-0 left-0 w-full h-8 bg-gray-300 border-b-2 border-white shadow-lg flex justify-between items-center px-4">
+      <button className="text-sm text-gray-600">English</button>
+      <label className="text-sm text-gray-600">Join the ClyCites Network</label>
+    </div>
+    <nav
+        className={`flexBetween max-container padding-container fixed ${
+          scrolled ? 'top-0' : 'top-8'
+        } left-0 w-full z-20 py-1 bg-white border-b-2 border-white shadow-lg`}
+        style={{ position: 'fixed', zIndex: 50 }}
+      >
       <Link href="/">
         <Image src="/images/logo.jpeg" alt="logo" width={80} height={29} className="rounded-full"/>
       </Link>
@@ -122,6 +150,7 @@ const Navbar = () => {
         className="inline-block cursor-pointer lg:hidden"
       />
     </nav>
+    </div>
   );
 };
 
