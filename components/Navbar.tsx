@@ -58,9 +58,10 @@ export const NAV_LINKS = [
 
 const Navbar = () => {
   return (
-    <nav className="flexBetween max-container padding-container fixed top-0 left-0 w-full z-30 py-5">
+    
+    <nav className="flexBetween max-container padding-container fixed top-8 left-0 w-full z-20 py-1` bg-white border-b-2 border-white shadow-lg">
       <Link href="/">
-        <Image src="/hilink-logo.svg" alt="logo" width={74} height={29} />
+        <Image src="/images/logo.jpeg" alt="logo" width={80} height={29} className="rounded-full"/>
       </Link>
       <ul className="hidden h-full gap-12 lg:flex">
         {NAV_LINKS.map((link) => (
