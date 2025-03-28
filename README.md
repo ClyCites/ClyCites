@@ -14,9 +14,29 @@
   <h3 align="center">CLYCITES</h3>
 
    <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
+     ClyCites is a pioneering technology platform dedicated to strengthening digital infrastructure and interconnection within Uganda's agricultural sector, with expanding reach across Africa. We serve as a critical bridge between farmers, agribusinesses, researchers, and policymakers through innovative digital solutions.
     </div>
 </div>
+
+## Mission 
+
+Our mission is to create a robust, user-friendly, and inclusive online marketplace that simplifies the buying and selling of agricultural products. We are committed to providing a platform that enables farmers and agribusinesses to reach a wider market and maximize their profits.
+
+## What We Do
+
+Online Marketing Platform: ClyCites offers a state-of-the-art online marketing system designed specifically for the agriculture industry. Our platform connects farmers and agricultural producers directly with consumers, retailers, and wholesalers.
+
+Product Listings: We provide a comprehensive platform for farmers to showcase their products, from fresh produce to value-added goods, allowing them to reach a broader audience and increase sales.
+
+Buyer-Seller Connectivity: ClyCites facilitates easy and secure transactions between buyers and sellers, ensuring transparency and trust throughout the process.
+
+Market Insights: We offer valuable market insights, data analytics, and trends to help farmers make informed decisions and optimize their production.
+
+## Why Choose ClyCites
+
+Innovation: We are at the forefront of agricultural technology, constantly developing and improving our platform to meet the evolving needs of the industry.
+
+Accessibility: ClyCites is accessible to farmers of all sizes, from smallholders to large commercial operations, fostering inclusivity in the agricultural marketplace.
 
 ## 📋 <a name="table">Table of Contents</a>
 
@@ -27,14 +47,6 @@
 5. 🕸️ [Snippets](#snippets)
 6. 🔗 [Links](#links)
 7. 🚀 [More](#more)
-
-## 🚨 Tutorial
-
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>. 
-
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
-
-<a href="https://youtu.be/cuzw4vL1z5E?feature=shared" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
 
 ## <a name="introduction">🤖 Introduction</a>
 
