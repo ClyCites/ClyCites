@@ -50,6 +50,8 @@ Built with Next.js, TailwindCSS, and TypeScript, this landing page not only look
 
 If you're getting started and need assistance or face any bugs, join our active Discord community with over 27k+ members. It's a place where people help each other out.
 
+Let's get into it.
+
 <a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
@@ -78,12 +80,6 @@ and many more, including code architecture and reusability
 
 Open your terminal and run the following command to clone the repository to your local machine: 
 
-```bash 
-
-git clone https://github.com/ClyCites/ClyCites.git
-
-```
-
 Then, navigate into the project directory:
 
 ```bash 
@@ -98,6 +94,12 @@ Inside the project directory, install the necessary packages by running:
 
 npm install
 
+```
+Example:
+To install Tailwind CSS;
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
 
 This command will download and install all dependencies listed in the ```bash package.json ``` File.
@@ -130,6 +132,17 @@ After building, you can start the production server with:
 npm start
 
 ``` 
+
+
+**If you are stuck anywhere**
+```bash
+Ctrl+C
+```
+
+**To go into a specific folder**
+```bash
+cd folder_name
+```
 
 ## <a name="snippets">🕸️ Snippets</a>
 
