@@ -1,9 +1,5 @@
 <div align="center">
-  <br />
-    <a href="https://youtu.be/cuzw4vL1z5E?feature=shared" target="_blank">
-      <img src="https://github.com/adrianhajdin/travel_ui_ux/assets/151519281/c72ebf75-847d-4a98-8f8a-24be02dac752" alt="Project Banner">
-    </a>
-  <br />
+  <img src="assets/159470957.png" alt="ClyCites" width="150px"/>
 
   <div>
     <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
@@ -81,35 +77,23 @@ and many more, including code architecture and reusability
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
-Follow these steps to set up the project locally on your machine.
 
-**Prerequisites**
+Open your terminal and run the following command to clone the repository to your local machine: 
 
-Make sure you have the following installed on your machine:
+Then, navigate into the project directory:
 
-1. Development Environment
--Install VS Code
-    Then install useful extensions like Tailwind CSS IntelliSense and Next.js snippets
--Install Node.js(LTS version)
-    [Node.js](https://nodejs.org/en)
--Install Git(for version control)
-    [Git](https://git-scm.com/)
--Install the Node Package Manager
-    [npm](https://www.npmjs.com/)
+```bash 
 
-**Cloning the Repository**
+cd ClyCites
 
-```bash
-git clone https://github.com/adrianhajdin/travel_ui_ux.git
-cd travel_ui_ux
 ```
+#### Install Dependencies
+Inside the project directory, install the necessary packages by running:
 
-**Installation**
+```bash 
 
-Install the project dependencies using npm:
-
-```bash
 npm install
+
 ```
 Example:
 To install Tailwind CSS;
@@ -118,13 +102,36 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-**Running the Project**
+This command will download and install all dependencies listed in the ```bash package.json ``` File.
 
-```bash
+
+#### Run the Development Server
+After installation is complete, start the development server with: 
+
+```bash 
+
 npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+``` 
+
+Once the server is running, open your browser and go to http://localhost:3000 to view the application. 
+
+#### Build for Production
+
+To create an optimized production build, run:
+
+```bash 
+
+npm run build
+
+```
+After building, you can start the production server with:
+
+```bash 
+
+npm start
+
+``` 
 
 
 **If you are stuck anywhere**
