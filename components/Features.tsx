@@ -1,68 +1,68 @@
-import { FEATURES } from '@/constants'
-import Image from 'next/image'
-import React from 'react'
+import { BarChart3, ShoppingCart, Users, LineChart, CloudSun, Bug } from "lucide-react"
 
-const Features = () => {
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
+const features = [
+  {
+    name: "E-Market",
+    description: "Connect directly with buyers and sell your produce at fair market prices without intermediaries.",
+    icon: ShoppingCart,
+  },
+  {
+    name: "Expert Portal",
+    description: "Access agricultural experts for advice on crop management, disease control, and best practices.",
+    icon: Users,
+  },
+  {
+    name: "Agric Assistant",
+    description: "AI-powered assistant to help with farming decisions, crop planning, and market timing.",
+    icon: LineChart,
+  },
+  {
+    name: "Price Monitoring",
+    description: "Track real-time market prices to make informed decisions about when to sell your produce.",
+    icon: BarChart3,
+  },
+  {
+    name: "Weather Detection",
+    description: "Get accurate weather forecasts and alerts to protect your crops from adverse conditions.",
+    icon: CloudSun,
+  },
+  {
+    name: "Pest & Disease Detection",
+    description: "Identify and manage crop diseases and pests early with AI-powered image recognition.",
+    icon: Bug,
+  },
+]
+
+export function Features() {
   return (
-    <section className="flex-col flexCenter overflow-hidden bg-feature-bg bg-center bg-no-repeat py-24">
-      <div className="max-container padding-container relative w-full flex justify-end">
-        <div className="flex flex-1 lg:min-h-[900px]">
-          <Image
-            src="/phone.png"
-            alt="phone"
-            width={440}
-            height={1000}
-            className="feature-phone"
-          />
+    <section className="py-16 sm:py-24 bg-white">
+      <div className="container">
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Our Features</h2>
+          <p className="mt-4 text-lg text-gray-600">
+            ClyCites provides a comprehensive suite of tools to help farmers succeed in the digital agricultural
+            marketplace.
+          </p>
         </div>
 
-        <div className="z-20 flex w-full flex-col lg:w-[60%]">
-          <div className='relative'>
-            <Image
-              src="/camp.svg"
-              alt="camp"
-              width={50}
-              height={50}
-              className="absolute left-[-5px] top-[-28px] w-10 lg:w-[50px]"
-            />
-            <h2 className="bold-40 lg:bold-64">Our Features</h2>
-          </div>
-          <ul className="mt-10 grid gap-10 md:grid-cols-2 lg:mg-20 lg:gap-20">
-            {FEATURES.map((feature) => (
-              <FeatureItem 
-                key={feature.title}
-                title={feature.title} 
-                icon={feature.icon}
-                description={feature.description}
-              />
-            ))}
-          </ul>
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature) => (
+            <Card key={feature.name} className="border-0 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <feature.icon className="h-6 w-6 text-emerald-600" />
+                </div>
+                <CardTitle>{feature.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base">{feature.description}</CardDescription>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
   )
 }
-
-type FeatureItem = {
-  title: string;
-  icon: string;
-  description: string;
-}
-
-const FeatureItem = ({ title, icon, description }: FeatureItem) => {
-  return (
-    <li className="flex w-full flex-1 flex-col items-start">
-      <div className="rounded-full p-4 lg:p-7 bg-green-50">
-        <Image src={icon} alt="map" width={28} height={28} />
-      </div>
-      <h2 className="bold-20 lg:bold-32 mt-5 capitalize">
-        {title}
-      </h2>
-      <p className="regular-16 mt-5 bg-white/80 text-gray-30 lg:mt-[30px] lg:bg-none">
-        {description}
-      </p>
-    </li>
-  )
-}
-
-export default Features
