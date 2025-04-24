@@ -5,10 +5,12 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export const metadata: Metadata = {
   title: "ClyCites - Digital Agriculture Platform",
   description: "Empowering farmers with digital solutions for marketing and selling farm produce",
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -21,8 +23,9 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Header />
-          <main className="relative overflow-hidden mt-[120px]">{children}</main>
+          <main className="relative overflow-hidden">{children}</main>
           <Footer />
+          <ThemeSwitcher />
         </ThemeProvider>
       </body>
     </html>

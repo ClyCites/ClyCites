@@ -1,179 +1,108 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, ChevronDown } from "lucide-react"
+import { Bell } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-
-const navigation = [
-  { name: "Home", href: "/" },
-  {
-    name: "Products",
-    href: "#",
-    dropdown: [
-      { name: "Analytics Dashboard", href: "/products/analytics" },
-      { name: "Mobile App", href: "/products/mobile-app" },
-      { name: "Weather Detection", href: "/products/weather" },
-      { name: "Pest And Diseases Detection", href: "/products/pest-detection" },
-      { name: "Soil PH Detection", href: "/products/soil-detection" },
-      { name: "Agriculture E-Market", href: "/products/e-market" },
-    ],
-  },
-  {
-    name: "Solutions",
-    href: "#",
-    dropdown: [
-      { name: "Disease Control", href: "/disease" },
-      { name: "Nutrition Monitoring", href: "/nutrition" },
-      { name: "Price Monitoring", href: "/price-monitoring" },
-      { name: "Market Intelligence", href: "/market-intelligence" },
-      { name: "Expert Portal", href: "/expert-portal" },
-      { name: "Agric Assistant", href: "/agric-assistant" },
-    ],
-  },
-  {
-    name: "About",
-    href: "#",
-    dropdown: [
-      { name: "About Us", href: "/about" },
-      { name: "Resources", href: "/resources" },
-      { name: "Careers", href: "/careers" },
-      { name: "Contact Us", href: "/contact" },
-      { name: "Events", href: "/events" },
-      { name: "Programs", href: "/program" },
-    ],
-  },
-]
+import { MainNav } from "@/components/main-nav"
+import { MobileNav } from "@/components/mobile-nav"
+import { SearchCommand } from "@/components/search-command"
+import { Badge } from "@/components/ui/badge"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
-      <div className="bg-emerald-50 py-1.5">
+    <header
+      className={cn(
+        "w-full transition-all duration-300",
+        isScrolled
+          ? "fixed top-0 z-50 bg-background/95 dark:bg-background/90 backdrop-blur-sm border-b shadow-sm"
+          : "absolute top-0 left-0 right-0 bg-transparent z-50",
+      )}
+    >
+      {/* Top Bar */}
+      <div className="bg-emerald-900 dark:bg-emerald-950 text-white py-1.5">
         <div className="container flex items-center justify-between text-sm">
           <div className="flex items-center space-x-4">
-            <span className="text-emerald-700 font-medium">PricePulse-AI</span>
-            <span className="hidden md:inline-block text-gray-600">Empowering farmers with digital solutions</span>
+            <Badge variant="success" className="text-xs font-normal">
+              New
+            </Badge>
+            <span className="hidden md:inline-block">Introducing PricePulse-AI: Real-time market price monitoring</span>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/login" className="text-gray-600 hover:text-emerald-700">
+            <Link href="/login" className="text-emerald-100 hover:text-white transition-colors">
               Login
             </Link>
-            <Link href="/register" className="text-gray-600 hover:text-emerald-700">
+            <span className="text-emerald-500">|</span>
+            <Link href="/register" className="text-emerald-100 hover:text-white transition-colors">
               Register
             </Link>
           </div>
         </div>
       </div>
 
-      <nav className="container flex items-center justify-between py-4">
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
-            <Image src="/images/logo.jpeg" alt="ClyCites" width={50} height={50} className="rounded-full" />
-            <span className="font-bold text-2xl text-gray-800">ClyCites</span>
+      {/* Main Navigation */}
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <MobileNav />
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/logo.jpeg"
+              alt="ClyCites"
+              width={40}
+              height={40}
+              className="rounded-full border-2 border-emerald-500"
+            />
+            <div className="flex flex-col">
+              <span className="font-bold text-xl text-emerald-800 dark:text-emerald-300">ClyCites</span>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 -mt-1">
+                Digital Agriculture Platform
+              </span>
+            </div>
           </Link>
+          <MainNav />
         </div>
-
-        {/* Mobile menu button */}
-        <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-          <SheetTrigger asChild className="lg:hidden">
-            <Button variant="ghost" size="icon" aria-label="Menu">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[350px]">
-            <div className="flex flex-col gap-6 mt-6">
-              {navigation.map((item) => (
-                <div key={item.name} className="space-y-3">
-                  {item.dropdown ? (
-                    <>
-                      <div className="font-medium text-lg">{item.name}</div>
-                      <div className="ml-4 space-y-2">
-                        {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block text-gray-600 hover:text-emerald-700"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="font-medium text-lg text-gray-900 hover:text-emerald-700"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              ))}
-              <div className="mt-4 space-y-3">
-                <Button asChild className="w-full" variant="default">
-                  <Link href="/get-started">Get Started</Link>
+        <div className="flex items-center gap-2">
+          <TooltipProvider>
+            <SearchCommand />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" className="rounded-full">
+                  <Bell className="h-4 w-4" />
+                  <span className="sr-only">Notifications</span>
                 </Button>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/contact">Contact Us</Link>
-                </Button>
-              </div>
+              </TooltipTrigger>
+              <TooltipContent>Notifications</TooltipContent>
+            </Tooltip>
+            <div className="hidden md:flex items-center gap-4">
+              <Button asChild variant="outline" className="rounded-full">
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button
+                asChild
+                className="rounded-full bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-700 dark:hover:bg-emerald-600"
+              >
+                <Link href="/get-started">Get Started</Link>
+              </Button>
             </div>
-          </SheetContent>
-        </Sheet>
-
-        {/* Desktop menu */}
-        <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
-            <div key={item.name} className="relative group">
-              {item.dropdown ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="inline-flex items-center text-gray-700 hover:text-emerald-700 font-medium">
-                      {item.name}
-                      <ChevronDown className="ml-1 h-4 w-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-48">
-                    {item.dropdown.map((subItem) => (
-                      <DropdownMenuItem key={subItem.name} asChild>
-                        <Link href={subItem.href}>{subItem.name}</Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Link
-                  href={item.href}
-                  className={`text-base font-medium ${
-                    pathname === item.href ? "text-emerald-700" : "text-gray-700 hover:text-emerald-700"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )}
-            </div>
-          ))}
+          </TooltipProvider>
         </div>
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-          <Button asChild variant="outline" className="rounded-full">
-            <Link href="/login">Login</Link>
-          </Button>
-          <Button asChild className="rounded-full">
-            <Link href="/get-started">Get Started</Link>
-          </Button>
-        </div>
-      </nav>
+      </div>
     </header>
   )
 }

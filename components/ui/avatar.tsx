@@ -1,50 +1,49 @@
 "use client"
 
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import { type VariantProps, cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-      className
-    )}
-    {...props}
-  />
-))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+const avatarGroupVariants = cva("flex items-center", {
+  variants: {
+    size: {
+      default: "-space-x-2",
+      sm: "-space-x-1.5",
+      lg: "-space-x-3",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+  },
+})
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn("aspect-square h-full w-full", className)}
-    {...props}
-  />
-))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
+export interface AvatarGroupProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof avatarGroupVariants> {
+  limit?: number
+  total?: number
+  truncate?: boolean
+}
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted",
-      className
-    )}
-    {...props}
-  />
-))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+  ({ className, size, limit = 4, total, truncate = true, ...props }, ref) => {
+    const slicedChildren = React.Children.toArray(props.children).slice(0, limit)
+    const excess = total ?? React.Children.count(props.children) - limit
 
-export { Avatar, AvatarImage, AvatarFallback }
+    return (
+      <div ref={ref} className={cn(avatarGroupVariants({ size }), className)} {...props}>
+        {slicedChildren}
+        {truncate && excess > 0 && (
+          <Avatar>
+            <AvatarFallback className="bg-muted text-muted-foreground">+{excess}</AvatarFallback>
+          </Avatar>
+        )}
+      </div>
+    )
+  },
+)
+AvatarGroup.displayName = "AvatarGroup"
+
+export { AvatarGroup }

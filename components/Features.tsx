@@ -1,6 +1,9 @@
+"use client"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 import { BarChart3, ShoppingCart, Users, LineChart, CloudSun, Bug } from "lucide-react"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const features = [
   {
@@ -36,32 +39,64 @@ const features = [
 ]
 
 export function Features() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  }
+
   return (
-    <section className="py-16 sm:py-24 bg-white">
-      <div className="container">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Our Features</h2>
-          <p className="mt-4 text-lg text-gray-600">
+    <section className="py-20 sm:py-32 bg-white dark:bg-gray-950">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Features</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             ClyCites provides a comprehensive suite of tools to help farmers succeed in the digital agricultural
             marketplace.
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <Card key={feature.name} className="border-0 shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-emerald-600" />
-                </div>
-                <CardTitle>{feature.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {features.map((feature, index) => (
+            <motion.div key={feature.name} variants={itemVariants}>
+              <Card className="border-0 shadow-md hover:shadow-lg transition-shadow h-full">
+                <CardHeader>
+                  <div className="bg-emerald-100 dark:bg-emerald-900 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <CardTitle>{feature.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-base text-gray-600 dark:text-gray-300">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

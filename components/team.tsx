@@ -7,7 +7,7 @@ const team = [
   {
     name: "Vanessa Furaha",
     role: "TEAM LEAD, RESEARCHER",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.PNG-JKUIJpYV3ETICj9T0LbMxuCfjIYCN9.png",
+    image: "/images/team/image.png",
     social: {
       twitter: "https://twitter.com/vanessafuraha",
       linkedin: "https://linkedin.com/in/vanessafuraha",
@@ -17,7 +17,7 @@ const team = [
   {
     name: "Troy Moses Mugabi",
     role: "DEVELOPER, ML",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.PNG-JKUIJpYV3ETICj9T0LbMxuCfjIYCN9.png",
+    image: "/images/team/image.png",
     social: {
       twitter: "https://twitter.com/troymoses",
       linkedin: "https://linkedin.com/in/troymoses",
@@ -27,7 +27,7 @@ const team = [
   {
     name: "Dhieu David",
     role: "DEVELOPER",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.PNG-JKUIJpYV3ETICj9T0LbMxuCfjIYCN9.png",
+    image: "/images/team/image.png",
     social: {
       twitter: "https://twitter.com/dhieudavid",
       linkedin: "https://linkedin.com/in/dhieudavid",
@@ -37,7 +37,7 @@ const team = [
   {
     name: "Ishimwe Tresor Bertrand",
     role: "DEVELOPER",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.PNG-JKUIJpYV3ETICj9T0LbMxuCfjIYCN9.png",
+    image: "/images/team/image.png",
     social: {
       twitter: "https://twitter.com/ishimwetresor",
       linkedin: "https://linkedin.com/in/ishimwetresor",
