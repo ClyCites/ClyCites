@@ -71,7 +71,7 @@ export function Hero() {
   }, [floatingCircleControls, floatingSquareControls, floatingTriangleControls])
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50 to-white py-20 sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50 to-white py-20 sm:py-28 lg:py-32 ">
       {/* Animated background elements */}
       <motion.div
         className="absolute top-20 right-[10%] w-24 h-24 rounded-full bg-emerald-200 opacity-20 blur-xl"
@@ -106,7 +106,7 @@ export function Hero() {
         </svg>
       </div>
 
-      <div className="container relative z-10">
+      <div className="relative z-10 mt-0 md:mt-[-120px] px-4 md:px-8">
         <motion.div
           ref={ref}
           initial="hidden"
