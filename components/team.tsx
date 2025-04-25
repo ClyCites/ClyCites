@@ -27,7 +27,7 @@ const team = [
   {
     name: "Dhieu David",
     role: "DEVELOPER",
-    image: "/images/team/image.png",
+    image: "/images/team/do.jpg",
     social: {
       twitter: "https://twitter.com/dhieudavid",
       linkedin: "https://linkedin.com/in/dhieudavid",
@@ -37,7 +37,7 @@ const team = [
   {
     name: "Ishimwe Tresor Bertrand",
     role: "DEVELOPER",
-    image: "/images/team/image.png",
+    image: "/images/team/trs.jpg",
     social: {
       twitter: "https://twitter.com/ishimwetresor",
       linkedin: "https://linkedin.com/in/ishimwetresor",

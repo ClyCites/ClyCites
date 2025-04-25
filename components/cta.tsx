@@ -76,7 +76,7 @@ export function CTA() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <section className={`py-20 sm:py-32 ${currentTheme.bg} transition-colors duration-500`}>
+    <section className={`py-20 sm:py-32 ${currentTheme.bg} duration-500`}>
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="absolute top-4 right-4 sm:top-8 sm:right-8">
           <Button
