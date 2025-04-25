@@ -45,7 +45,7 @@ export function ProblemSolution() {
         </svg>
       </div>
 
-      <div className="container relative z-10">
+      <div className="relative z-10 px-4 md:px-8">
         <motion.div
           ref={ref}
           initial="hidden"

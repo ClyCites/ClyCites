@@ -52,7 +52,7 @@ export function Header() {
       </div>
 
       {/* Main Navigation */}
-      <div className="container flex h-16 items-center justify-between px-6">
+      <div className="flex h-16 items-center justify-between px-4 md:px-8">
         {/* Logo Section - Left */}
         <div className="flex items-center gap-2">
           <MobileNav />
