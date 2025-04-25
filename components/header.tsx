@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -60,36 +60,65 @@ export function Header() {
       </div>
 
       {/* Main Navigation */}
-      <div className="container flex h-16 items-center justify-between">
+      <div
+        className={cn(
+          "container flex h-16 items-center justify-between transition-colors duration-300",
+          isScrolled ? "text-foreground" : "text-white",
+        )}
+      >
         <div className="flex items-center gap-2">
-          <MobileNav />
+          <MobileNav isScrolled={isScrolled} />
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.jpeg"
               alt="ClyCites"
               width={40}
               height={40}
-              className="rounded-full border-2 border-emerald-500"
+              className={cn(
+                "rounded-full transition-all duration-300",
+                isScrolled ? "border-2 border-emerald-500" : "border-2 border-white",
+              )}
             />
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-emerald-800 dark:text-emerald-300">ClyCites</span>
-              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 -mt-1">
+              <span
+                className={cn(
+                  "font-bold text-xl transition-colors duration-300",
+                  isScrolled ? "text-emerald-800 dark:text-emerald-300" : "text-white",
+                )}
+              >
+                ClyCites
+              </span>
+              <span
+                className={cn(
+                  "text-[10px] -mt-1 transition-colors duration-300",
+                  isScrolled ? "text-emerald-600 dark:text-emerald-400" : "text-emerald-100",
+                )}
+              >
                 Digital Agriculture Platform
               </span>
             </div>
           </Link>
-          <MainNav />
+          <MainNav isScrolled={isScrolled} />
         </div>
         <div className="flex items-center gap-2">
           <TooltipProvider>
-            <SearchCommand />
+            <SearchCommand
+              className={cn(!isScrolled && "bg-white/20 backdrop-blur-sm border-white/40 hover:bg-white/30 text-white")}
+            />
 
             {/* Theme Switcher */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className={cn(
+                        "rounded-full",
+                        !isScrolled && "bg-white/20 backdrop-blur-sm border-white/40 hover:bg-white/30",
+                      )}
+                    >
                       <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                       <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                       <span className="sr-only">Toggle theme</span>
@@ -107,7 +136,14 @@ export function Header() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="rounded-full">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={cn(
+                    "rounded-full",
+                    !isScrolled && "bg-white/20 backdrop-blur-sm border-white/40 hover:bg-white/30",
+                  )}
+                >
                   <Bell className="h-4 w-4" />
                   <span className="sr-only">Notifications</span>
                 </Button>
@@ -115,7 +151,14 @@ export function Header() {
               <TooltipContent>Notifications</TooltipContent>
             </Tooltip>
             <div className="hidden md:flex items-center gap-4">
-              <Button asChild variant="outline" className="rounded-full">
+              <Button
+                asChild
+                variant="outline"
+                className={cn(
+                  "rounded-full",
+                  !isScrolled && "bg-white/20 backdrop-blur-sm border-white/40 text-white hover:bg-white/30",
+                )}
+              >
                 <Link href="/login">Login</Link>
               </Button>
               <Button
@@ -128,6 +171,11 @@ export function Header() {
           </TooltipProvider>
         </div>
       </div>
+
+      {/* Transparent gradient overlay for better text legibility when header is transparent */}
+      {!isScrolled && (
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent pointer-events-none z-[-1]"></div>
+      )}
     </header>
   )
 }

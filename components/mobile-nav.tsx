@@ -11,7 +11,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-export function MobileNav() {
+// Add isScrolled prop to the MobileNav component
+export function MobileNav({ isScrolled }: { isScrolled: boolean }) {
   const pathname = usePathname()
   const [open, setOpen] = React.useState(false)
 
@@ -20,7 +21,10 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          className={cn(
+            "mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden",
+            !isScrolled && "text-white hover:text-white/90",
+          )}
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle Menu</span>

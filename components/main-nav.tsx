@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
@@ -94,7 +93,7 @@ const aboutItems = [
   },
 ]
 
-export function MainNav() {
+export function MainNav({ isScrolled }: { isScrolled: boolean }) {
   const pathname = usePathname()
 
   return (
@@ -102,12 +101,23 @@ export function MainNav() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuLink href="/" className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              href="/"
+              className={cn(
+                navigationMenuTriggerStyle(),
+                !isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10",
+                pathname === "/" ? "font-medium" : "",
+              )}
+            >
               Home
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+            <NavigationMenuTrigger
+              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
+            >
+              Products
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
                 {productItems.map((item) => (
@@ -119,7 +129,11 @@ export function MainNav() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+            <NavigationMenuTrigger
+              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
+            >
+              Solutions
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
                 {solutionItems.map((item) => (
@@ -131,7 +145,11 @@ export function MainNav() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>About</NavigationMenuTrigger>
+            <NavigationMenuTrigger
+              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
+            >
+              About
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
                 {aboutItems.map((item) => (

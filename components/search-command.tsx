@@ -16,7 +16,8 @@ import {
   CommandList,
 } from "@/components/ui/command"
 
-export function SearchCommand({ ...props }: DialogProps) {
+// Add className prop to accept custom styling
+export function SearchCommand({ className, ...props }: DialogProps & { className?: string }) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
 
@@ -41,7 +42,7 @@ export function SearchCommand({ ...props }: DialogProps) {
     <>
       <Button
         variant="outline"
-        className={cn("relative h-9 w-9 p-0 xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2")}
+        className={cn("relative h-9 w-9 p-0 xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2", className)}
         onClick={() => setOpen(true)}
         {...props}
       >
@@ -64,7 +65,7 @@ export function SearchCommand({ ...props }: DialogProps) {
             <CommandItem onSelect={() => runCommand(() => router.push("/program"))}>Programs</CommandItem>
           </CommandGroup>
           <CommandGroup heading="Products">
-            <CommandItem onSelect={() => runCommand(() => router.push("/products/analytics"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push("https://price-monitoring-three.vercel.app"))}>
               Analytics Dashboard
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push("/products/mobile-app"))}>Mobile App</CommandItem>
