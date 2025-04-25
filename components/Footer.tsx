@@ -37,7 +37,7 @@ export function Footer() {
       className="bg-gradient-to-br from-gray-900 to-gray-950 text-white"
     >
       {/* Newsletter Section */}
-      <div className="container py-12">
+      <div className="relative px-4 md:px-8">
         <motion.div variants={itemVariants} className="relative overflow-hidden rounded-2xl bg-gray-800 p-8 md:p-10">
           <div className="absolute inset-0 bg-[url('/pattern.png')] bg-center opacity-10"></div>
           <div className="relative grid gap-6 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
@@ -65,7 +65,7 @@ export function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="container py-12 md:py-16">
+      <div className="relative px-4 md:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           <motion.div variants={itemVariants} className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2">

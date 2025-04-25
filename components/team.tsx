@@ -17,7 +17,7 @@ const team = [
   {
     name: "Troy Moses Mugabi",
     role: "DEVELOPER, ML",
-    image: "/images/team/image.png",
+    image: "/images/team/mos.jpg",
     social: {
       twitter: "https://twitter.com/troymoses",
       linkedin: "https://linkedin.com/in/troymoses",
@@ -57,7 +57,7 @@ export function Team() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-8">
           {team.map((member) => (
             <Card key={member.name} className="border-0 shadow-md overflow-hidden">
               <CardHeader className="p-0">
