@@ -1,8 +1,8 @@
 "use client"
 import Link from "next/link"
-import Image from "next/image"
+import { useEffect } from "react"
 import { ArrowRight, ChevronDown } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 import { Button } from "@/components/ui/button"
@@ -33,7 +33,7 @@ export function Hero() {
     },
   }
 
-  const imageVariants = {
+  const videoVariants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -42,8 +42,58 @@ export function Hero() {
     },
   }
 
+  // Animated background elements
+  const floatingCircleControls = useAnimation()
+  const floatingSquareControls = useAnimation()
+  const floatingTriangleControls = useAnimation()
+
+  useEffect(() => {
+    // Animate floating elements
+    floatingCircleControls.start({
+      y: [0, -15, 0],
+      x: [0, 10, 0],
+      transition: { repeat: Number.POSITIVE_INFINITY, duration: 5, ease: "easeInOut" },
+    })
+
+    floatingSquareControls.start({
+      y: [0, 20, 0],
+      x: [0, -15, 0],
+      rotate: [0, 10, 0],
+      transition: { repeat: Number.POSITIVE_INFINITY, duration: 7, ease: "easeInOut" },
+    })
+
+    floatingTriangleControls.start({
+      y: [0, -10, 0],
+      x: [0, -5, 0],
+      rotate: [0, -5, 0],
+      transition: { repeat: Number.POSITIVE_INFINITY, duration: 6, ease: "easeInOut" },
+    })
+  }, [floatingCircleControls, floatingSquareControls, floatingTriangleControls])
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50 to-white py-20 sm:py-28 lg:py-32">
+      {/* Animated background elements */}
+      <motion.div
+        className="absolute top-20 right-[10%] w-24 h-24 rounded-full bg-emerald-200 opacity-20 blur-xl"
+        animate={floatingCircleControls}
+      />
+      <motion.div
+        className="absolute bottom-40 left-[15%] w-32 h-32 bg-blue-200 opacity-20 blur-xl"
+        animate={floatingSquareControls}
+      />
+      <motion.div
+        className="absolute top-[40%] left-[5%] w-20 h-20 bg-amber-200 opacity-20 blur-xl"
+        animate={floatingTriangleControls}
+      />
+      <motion.div
+        className="absolute bottom-[10%] right-[20%] w-16 h-16 rounded-full bg-purple-200 opacity-20 blur-xl"
+        animate={{
+          y: [0, 15, 0],
+          x: [0, -10, 0],
+          transition: { repeat: Number.POSITIVE_INFINITY, duration: 4, ease: "easeInOut" },
+        }}
+      />
+
       {/* Background pattern */}
       <div className="absolute inset-0 z-0 opacity-10">
         <svg className="h-full w-full" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
@@ -100,13 +150,7 @@ export function Hero() {
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="inline-block h-10 w-10 rounded-full border-2 border-white overflow-hidden">
-                    <Image
-                      src={`/person-${i}.png`}
-                      alt={`User ${i}`}
-                      width={40}
-                      height={40}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={`/person-${i}.png`} alt={`User ${i}`} className="h-full w-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -115,17 +159,23 @@ export function Hero() {
               </div>
             </motion.div>
           </div>
-          <motion.div variants={imageVariants} className="relative">
+          <motion.div variants={videoVariants} className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent z-10"></div>
-              <Image
-                src="/images/agri.jpg"
-                alt="Agriculture"
-                width={600}
-                height={600}
-                className="w-full h-auto object-cover"
-                priority
-              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent z-10 pointer-events-none"></div>
+
+              {/* YouTube Video Embed */}
+              <div className="aspect-video w-full">
+              {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/CaIL9Ep5z1E?si=piLyVGyWfdv5RVFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe> */}
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/CaIL9Ep5z1E?si=piLyVGyWfdv5RVFU"
+                  title="Agriculture Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

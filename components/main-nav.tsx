@@ -60,7 +60,7 @@ const solutionItems = [
   },
   {
     title: "Price Monitoring",
-    href: "/price-monitoring",
+    href: "https://price-monitoring-three.vercel.app",
     description: "Track market prices to sell at the right time",
   },
   {
@@ -93,76 +93,59 @@ const aboutItems = [
   },
 ]
 
-export function MainNav({ isScrolled }: { isScrolled: boolean }) {
+// Update the MainNav component to be centered
+export function MainNav() {
   const pathname = usePathname()
 
   return (
-    <div className="mr-4 hidden md:flex">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/"
-              className={cn(
-                navigationMenuTriggerStyle(),
-                !isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10",
-                pathname === "/" ? "font-medium" : "",
-              )}
-            >
-              Home
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
-            >
-              Products
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
-                {productItems.map((item) => (
-                  <ListItem key={item.title} title={item.title} href={item.href}>
-                    {item.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
-            >
-              Solutions
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
-                {solutionItems.map((item) => (
-                  <ListItem key={item.title} title={item.title} href={item.href}>
-                    {item.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(!isScrolled && "text-white hover:text-white/90 bg-transparent hover:bg-white/10")}
-            >
-              About
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
-                {aboutItems.map((item) => (
-                  <ListItem key={item.title} title={item.title} href={item.href}>
-                    {item.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </div>
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            href="/"
+            className={cn(navigationMenuTriggerStyle(), pathname === "/" ? "font-medium" : "")}
+          >
+            Home
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
+              {productItems.map((item) => (
+                <ListItem key={item.title} title={item.title} href={item.href}>
+                  {item.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
+              {solutionItems.map((item) => (
+                <ListItem key={item.title} title={item.title} href={item.href}>
+                  {item.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>About</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background/90 backdrop-blur-md">
+              {aboutItems.map((item) => (
+                <ListItem key={item.title} title={item.title} href={item.href}>
+                  {item.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   )
 }
 

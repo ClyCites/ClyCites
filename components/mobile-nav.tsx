@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
+import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -11,8 +12,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-// Add isScrolled prop to the MobileNav component
-export function MobileNav({ isScrolled }: { isScrolled: boolean }) {
+// Update the MobileNav component to be non-transparent and on the left
+export function MobileNav() {
   const pathname = usePathname()
   const [open, setOpen] = React.useState(false)
 
@@ -21,16 +22,14 @@ export function MobileNav({ isScrolled }: { isScrolled: boolean }) {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className={cn(
-            "mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden",
-            !isScrolled && "text-white hover:text-white/90",
-          )}
+          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="pr-0">
+      <SheetContent side="left" className="pr-0 bg-white dark:bg-gray-900 border-r">
+        <MobileNavLogo />
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-4">
             <Link
@@ -186,5 +185,24 @@ export function MobileNav({ isScrolled }: { isScrolled: boolean }) {
         </ScrollArea>
       </SheetContent>
     </Sheet>
+  )
+}
+
+// Add this component for the mobile nav logo
+function MobileNavLogo() {
+  return (
+    <div className="flex items-center gap-2 py-4 border-b mb-4">
+      <Image
+        src="/images/logo.jpeg"
+        alt="ClyCites"
+        width={32}
+        height={32}
+        className="rounded-full border-2 border-emerald-500"
+      />
+      <div className="flex flex-col">
+        <span className="font-bold text-base text-emerald-800 dark:text-emerald-300">ClyCites</span>
+        <span className="text-[8px] -mt-1 text-emerald-600 dark:text-emerald-400">Digital Agriculture Platform</span>
+      </div>
+    </div>
   )
 }

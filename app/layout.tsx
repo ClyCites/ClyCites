@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Header />
-          <main className="relative overflow-hidden">{children}</main>
+          <main className="relative overflow-hidden pt-[104px]">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
